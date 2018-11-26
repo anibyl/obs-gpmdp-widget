@@ -27,6 +27,8 @@ Song Artist — Song Album
     MacOS:
     ```bash
     ln -s playback.json ~/Library/Application Support/Google Play Music Desktop Player/json_store/playback.json
-    ``` 
+    ```
 
-3. Add Browser source to your OBS, and point the local `playback.html` file.
+    Alternatively, you can just copy `playback.html` file to that folder.
+
+3. Add Browser source to your scene in OBS, and point the local `playback.html` file.
