@@ -4,6 +4,7 @@
 
 <head>
 	<title>Player</title>
+	<meta http-equiv="refresh" content="1">
 </head>
 
 <body>
@@ -39,36 +40,32 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        var frame = document.getElementById("frame");
-        var titleSpan = document.getElementById("title");
-        var artistSpan = document.getElementById("artist");
-        var albumSpan = document.getElementById("album");
+	$(document).ready(function () {
+		var frame = document.getElementById("frame");
+		var titleSpan = document.getElementById("title");
+		var artistSpan = document.getElementById("artist");
+		var albumSpan = document.getElementById("album");
 
-        function load() {
-            $.getJSON('playback.json', function (data) {
-                var playing = data.playing;
+		try {
+			$.getJSON('playback.json', function (data) {
+				if (data.playing) {
+					var song = data.song;
+					var songTitle = song.title;
+					var songArtist = song.artist;
+					var songAlbum = song.album;
 
-                if (playing) {
-                    var song = data.song;
-                    var songTitle = song.title;
-                    var songArtist = song.artist;
-                    var songAlbum = song.album;
+					frame.style.visibility = "visible";
 
-                    frame.style.visibility = "visible";
-
-                    titleSpan.innerHTML = songTitle;
-                    artistSpan.innerHTML = songArtist;
-                    albumSpan.innerHTML = songAlbum;
-                } else {
-                    frame.style.visibility = "hidden";
-                }
-
-                setTimeout(load, 1000);
-            });
-        }
-
-        load();
-    });
+					titleSpan.innerHTML = songTitle;
+					artistSpan.innerHTML = songArtist;
+					albumSpan.innerHTML = songAlbum;
+				} else {
+					frame.style.visibility = "hidden";
+				}
+			});
+		} catch (e) {
+			frame.style.visibility = "hidden";
+		}
+	});
 </script>
 </html>
